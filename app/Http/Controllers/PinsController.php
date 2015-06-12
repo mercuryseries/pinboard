@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use App\Pin;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreatePinRequest;
 use App\Http\Requests\UpdatePinRequest;
+use App\Pin;
 
 class PinsController extends Controller
 {
@@ -81,7 +80,7 @@ class PinsController extends Controller
 
         flash()->success('Your pin was updated successfully.');
 
-        return redirect()->route('pins.show', $id);
+        return redirect()->route('pins.show', $pin->id);
     }
 
     /**

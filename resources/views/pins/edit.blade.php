@@ -5,9 +5,9 @@
 
 	{!! Form::model($pin, ['route' => ['pins.update', $pin->id], 'method' => 'PATCH']) !!}
 
-		@include('pins/_form', ['submitButtonText' => 'Edit a pin'])
+		@include('pins/_form', ['submitButtonText' => 'Update'])
 
 	{!! Form::close() !!}
 
-	<a href="{{ route('root_path') }}">Back</a>
+	{!! link_to_route('root_path', 'Cancel') !!}
 @stop

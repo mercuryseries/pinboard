@@ -9,5 +9,5 @@
 
 	{!! Form::close() !!}
 
-	<a href="{{ route('root_path') }}">Back</a>
+	{!! link_to_route('root_path', 'Cancel') !!}
 @stop
