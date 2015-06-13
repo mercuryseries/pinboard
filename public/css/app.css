@@ -5787,9 +5787,6 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-body {
-  padding-top: 5px; }
-
 .help-block.error {
   color: #b84442; }
 
