@@ -8,7 +8,9 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "laracasts/flash": "~1.3",
-        "laravelcollective/html": "~5.0"
+        "laravelcollective/html": "~5.0",
+        "doctrine/dbal": "^2.6@dev",
+        "barryvdh/laravel-debugbar": "^2.0@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

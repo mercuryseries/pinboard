@@ -12,4 +12,8 @@ class Pin extends Model
      * @var array
      */
     protected $fillable = ['title', 'description'];
+
+    public function owner(){
+    	return $this->belongsTo('App\User', 'user_id');
+    }
 }

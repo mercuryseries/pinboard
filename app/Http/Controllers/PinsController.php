@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreatePinRequest;
 use App\Http\Requests\UpdatePinRequest;
 use App\Pin;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PinsController extends Controller
 {
+
+    function __construct() {
+        $this->middleware('auth', ['only' => 'create']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +45,9 @@ class PinsController extends Controller
      */
     public function store(CreatePinRequest $request)
     {
-        $pin = Pin::create($request->all());
+        $pin = new Pin($request->all());
+
+        Auth::user()->pins()->save($pin);
 
         flash()->success('Successfully created new pin.');
 

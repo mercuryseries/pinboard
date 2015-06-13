@@ -3,6 +3,7 @@
 @section('content')
 	<h1>{{ $pin->title }}</h1>
 	<p>{{ $pin->description }}</p>
+	<p>Submitted by {{ $pin->owner->email }}</p>
 
 	{!! link_to_route('root_path', 'Back') !!}
 	{!! link_to_route('pins.edit', 'Edit', $pin->id) !!}
