@@ -1,5 +1,39 @@
 @import 'bootstrap';
+@import 'pins';
 
 .help-block.error{
 	color: #b84442;
+}
+
+body {
+	font-family: 'Raleway', sans-serif;
+	background: #E9E9E9;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 100;
+}
+
+nav.navbar-default  {
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+	a.navbar-brand {
+		color: #bd1e23;
+		font-weight: bold;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+#edit_page {
+	.current_image {
+		img {
+			display: block;
+			margin: 20px 0;
+		}
+	}
+}
+
+textarea {
+	min-height: 250px;
 }

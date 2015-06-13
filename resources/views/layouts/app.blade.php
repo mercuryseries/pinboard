@@ -7,7 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,700">
+	<link href="{{ asset('/css/all.css') }}" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,16 +29,18 @@
         </button>
         {!! link_to_route('root_path', 'Pin Board', [], ['class' => 'navbar-brand']) !!}
       </div>
-			<ul class="nav navbar-nav navbar-right">
-				@if(Auth::check())
-					<li>{!! link_to_route('pins.create', 'New Pin') !!}</li>
-					<li>{!! link_to('#', 'Account') !!}</li>
-					<li>{!! link_to('auth/logout', 'Sign Out') !!}</li>
-				@else
-					<li>{!! link_to('auth/register', 'Sign Up') !!}</li>
-					<li>{!! link_to('auth/login', 'Sign In') !!}</li>
-				@endif
-			</ul>
+      <div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					@if(Auth::check())
+						<li>{!! link_to_route('pins.create', 'New Pin') !!}</li>
+						<li>{!! link_to('#', 'Account') !!}</li>
+						<li>{!! link_to('auth/logout', 'Sign Out') !!}</li>
+					@else
+						<li>{!! link_to('auth/register', 'Sign Up') !!}</li>
+						<li>{!! link_to('auth/login', 'Sign In') !!}</li>
+					@endif
+				</ul>
+      </div>
 		</div>
 	</nav>
 

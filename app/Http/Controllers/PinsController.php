@@ -49,9 +49,7 @@ class PinsController extends Controller
     {
         $data = $request->all();
 
-        $data['image'] = $this->dispatch(
-            new SaveImageFile( $data['image'], config('uploads_paths.pins') )
-        );
+        $data['image'] = $this->saveImage($request->image);
 
         $pin = new Pin($data);
 
@@ -94,11 +92,9 @@ class PinsController extends Controller
     {
         $data = $request->all();
 
-        $data['image'] = $this->dispatch(
-            new SaveImageFile( $data['image'], config('uploads_paths.pins') )
-        );
+        $data['image'] = $this->saveImage($request->image);
 
-        File::delete(public_path() . $pin->image); //Delete current image
+        $this->deleteCurrentImagesForThis($pin);
 
         $pin->update($data);
 
@@ -117,10 +113,21 @@ class PinsController extends Controller
     {
         $pin->delete();
 
-        File::delete(public_path() . $pin->image); //Delete current image
+        $this->deleteCurrentImagesForThis($pin);
 
         flash()->success('Your pin was deleted successfully.');
 
         return redirect()->route('root_path');
+    }
+
+    private function saveImage($image){
+        return $this->dispatch(
+            new SaveImageFile($image)
+        );
+    }
+
+    private function deleteCurrentImagesForThis(Pin $pin){
+        File::delete(public_path() . config('uploads_paths.pins.original') . $pin->image);
+        File::delete(public_path() . config('uploads_paths.pins.medium') . $pin->image);
     }
 }

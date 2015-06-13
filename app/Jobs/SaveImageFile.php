@@ -11,17 +11,14 @@ class SaveImageFile extends Job implements SelfHandling
 {
     private $file;
 
-    private $path;
-
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($file, $path)
+    public function __construct($file)
     {
         $this->file = $file;
-        $this->path = $path;
     }
 
     /**
@@ -35,21 +32,24 @@ class SaveImageFile extends Job implements SelfHandling
 
         $fileName = $this->generateRandomFileName();
 
-        $this->checksIfUploadDirectoryExistsOrCreate();
+        $this->checksIfUploadDirectoryExistsOrCreate(config('uploads_paths.pins.original'));
+        $this->checksIfUploadDirectoryExistsOrCreate(config('uploads_paths.pins.medium'));
+
+        $image->save(public_path() . config('uploads_paths.pins.original') . $fileName);
 
         $image->resize(300, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })
-              ->save( public_path(). $this->path . $fileName );
+              ->save(public_path(). config('uploads_paths.pins.medium') . $fileName);
 
-        return $this->path . $fileName;
+        return $fileName;
     }
 
     private function generateRandomFileName(){
         return str_random(20) . '.' . $this->file->getClientOriginalExtension();
     }
 
-    private function checksIfUploadDirectoryExistsOrCreate(){
-        return File::exists($this->path) or File::makeDirectory($this->path, 0755, true);
+    private function checksIfUploadDirectoryExistsOrCreate($path){
+        return File::exists($path) or File::makeDirectory($path, 0755, true);
     }
 }

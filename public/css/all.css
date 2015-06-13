@@ -1,3 +1,29 @@
+/**** Transitions ****/
+
+.masonry,
+.masonry .masonry-brick {
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+      -ms-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+}
+
+.masonry {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.masonry .masonry-brick {
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+      -ms-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
+}
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -5787,7 +5813,86 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+#pins {
+  margin: 0 auto;
+  width: 100%; }
+  #pins .box {
+    margin: 10px;
+    width: 350px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    border-radius: 7px;
+    text-align: center; }
+    #pins .box a.darken {
+      display: inline-block;
+      background: black;
+      padding: 0; }
+    #pins .box a.darken:hover img {
+      opacity: 0.7; }
+    #pins .box a.darken img {
+      max-width: 100%;
+      height: auto;
+      transition: all 0.5s linear; }
+    #pins .box h2 {
+      font-size: 22px;
+      margin: 0;
+      padding: 25px 10px; }
+      #pins .box h2 a {
+        color: #474747; }
+    #pins .box .user {
+      font-size: 12px;
+      border-top: 1px solid #EAEAEA;
+      padding: 15px;
+      margin: 0; }
+
+#pin_show .panel-heading {
+  padding: 0; }
+
+#pin_show .pin_image img {
+  max-width: 100%;
+  width: 100%;
+  display: block;
+  margin: 0 auto; }
+
+#pin_show .panel-body {
+  padding: 35px; }
+  #pin_show .panel-body h1 {
+    margin: 0 0 10px 0; }
+  #pin_show .panel-body .description {
+    color: #868686;
+    line-height: 1.75;
+    margin: 0; }
+
+#pin_show .panel-footer {
+  padding: 20px 35px; }
+  #pin_show .panel-footer p {
+    margin: 0; }
+  #pin_show .panel-footer .user {
+    padding-top: 8px; }
+
 .help-block.error {
   color: #b84442; }
 
+body {
+  font-family: 'Raleway', sans-serif;
+  background: #E9E9E9; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 100; }
+
+nav.navbar-default {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22); }
+  nav.navbar-default a.navbar-brand {
+    color: #bd1e23;
+    font-weight: bold; }
+    nav.navbar-default a.navbar-brand:hover {
+      text-decoration: none; }
+
+#edit_page .current_image img {
+  display: block;
+  margin: 20px 0; }
+
+textarea {
+  min-height: 250px; }
+
 /*# sourceMappingURL=app.css.map */
+/*# sourceMappingURL=all.css.map */

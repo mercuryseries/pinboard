@@ -17,4 +17,12 @@ class Pin extends Model
     	return $this->belongsTo('App\User', 'user_id');
     }
 
+    public function originalImage(){
+    	return config('uploads_paths.pins.original') . $this->image;
+    }
+
+    public function mediumImage(){
+    	return config('uploads_paths.pins.medium') . $this->image;
+    }
+
 }

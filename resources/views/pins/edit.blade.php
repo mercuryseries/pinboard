@@ -1,19 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
-			<h1>Edit a pin</h1>
+	<div id="edit_page" class="col-md-8 col-md-offset-2">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1>Edit a pin</h1>
+				</div>
+				<div class="panel-body">
+					<div class="current_image">
+						<strong class="center">Current Image</strong>
+						<img src="{{ $pin->mediumImage() }}" alt="">
+					</div>
+					{!! Form::model($pin, ['route' => ['pins.update', $pin->id], 'files' => true, 'method' => 'PATCH']) !!}
 
-			<img src="{{ $pin->image }}" alt="">
+						@include('pins/_form', ['submitButtonText' => 'Update'])
 
-			{!! Form::model($pin, ['route' => ['pins.update', $pin->id], 'files' => true, 'method' => 'PATCH']) !!}
-
-				@include('pins/_form', ['submitButtonText' => 'Update'])
-
-			{!! Form::close() !!}
-
-			{!! link_to_route('root_path', 'Cancel') !!}
+					{!! Form::close() !!}
+				</div>
+			</div>
 		</div>
 	</div>
 @stop

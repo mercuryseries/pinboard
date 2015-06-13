@@ -10,8 +10,6 @@
 				@include('pins/_form', ['submitButtonText' => 'Create a pin'])
 
 			{!! Form::close() !!}
-
-			{!! link_to_route('root_path', 'Cancel') !!}
 		</div>
 	</div>
 @stop

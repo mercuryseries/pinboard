@@ -1,4 +1,7 @@
 <?php
 return [
-	'pins' => '/uploads/pins/'
+	'pins' => [
+		'original'  => '/uploads/pins/original/',
+		'medium'    => '/uploads/pins/medium/'
+	]
 ];
