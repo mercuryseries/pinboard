@@ -5,7 +5,9 @@
 		<div class="col-md-6 col-md-offset-3">
 			<h1>Edit a pin</h1>
 
-			{!! Form::model($pin, ['route' => ['pins.update', $pin->id], 'method' => 'PATCH']) !!}
+			<img src="{{ $pin->image }}" alt="">
+
+			{!! Form::model($pin, ['route' => ['pins.update', $pin->id], 'files' => true, 'method' => 'PATCH']) !!}
 
 				@include('pins/_form', ['submitButtonText' => 'Update'])
 

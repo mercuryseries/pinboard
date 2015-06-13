@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePinRequest;
 use App\Http\Requests\UpdatePinRequest;
+use App\Jobs\SaveImageFile;
 use App\Pin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class PinsController extends Controller
 {
@@ -45,7 +47,13 @@ class PinsController extends Controller
      */
     public function store(CreatePinRequest $request)
     {
-        $pin = new Pin($request->all());
+        $data = $request->all();
+
+        $data['image'] = $this->dispatch(
+            new SaveImageFile( $data['image'], config('uploads_paths.pins') )
+        );
+
+        $pin = new Pin($data);
 
         Auth::user()->pins()->save($pin);
 
@@ -84,7 +92,15 @@ class PinsController extends Controller
      */
     public function update(Pin $pin, UpdatePinRequest $request)
     {
-        $pin->update($request->all());
+        $data = $request->all();
+
+        $data['image'] = $this->dispatch(
+            new SaveImageFile( $data['image'], config('uploads_paths.pins') )
+        );
+
+        File::delete(public_path() . $pin->image); //Delete current image
+
+        $pin->update($data);
 
         flash()->success('Your pin was updated successfully.');
 
@@ -100,6 +116,8 @@ class PinsController extends Controller
     public function destroy(Pin $pin)
     {
         $pin->delete();
+
+        File::delete(public_path() . $pin->image); //Delete current image
 
         flash()->success('Your pin was deleted successfully.');
 

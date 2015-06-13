@@ -16,6 +16,7 @@ class CreatePinsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description');
+            $table->string('image');
             $table->integer('user_id')->unsigned();
 
             $table->foreign('user_id')

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+	<img src="{{ $pin->image }}" alt="">
 	<h1>{{ $pin->title }}</h1>
 	<p>{{ $pin->description }}</p>
 	<p>Submitted by {{ $pin->owner->email }}</p>

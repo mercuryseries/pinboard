@@ -5,7 +5,7 @@
 		<div class="col-md-6 col-md-offset-3">
 			<h1>Create a new pin</h1>
 
-			{!! Form::open(['route' => 'pins.store']) !!}
+			{!! Form::open(['route' => 'pins.store', 'files' => true]) !!}
 
 				@include('pins/_form', ['submitButtonText' => 'Create a pin'])
 

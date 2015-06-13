@@ -1,3 +1,10 @@
+<!-- Image Form Input -->
+<div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
+	{!! Form::label('image', 'Image:') !!}
+	{!! Form::file('image', ['class' => 'form-control']) !!}
+	{!! $errors->first('image', '<span class="help-block error">:message</span>') !!}
+</div>
+
 <!-- Title Form Input -->
 <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
 	{!! Form::label('title', 'Title:') !!}
