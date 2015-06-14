@@ -15,7 +15,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<p class="user">
-								Submitted by {{ $pin->owner->email }}
+								Submitted by {{ $pin->owner->name }}
 							</p>
 						</div>
 						<div class="col-md-6">

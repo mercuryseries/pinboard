@@ -11,7 +11,7 @@
 					{!! link_to_route('pins.show', $pin->title, $pin->id) !!}
 				</h2>
 				<p class="user">
-					Submitted by {{ $pin->owner->email }}
+					Submitted by {{ $pin->owner->name }}
 				</p>
 			</div>
 		@empty
