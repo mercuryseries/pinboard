@@ -16,6 +16,8 @@ jQuery(function () {
 
         handleMethod: function(e)
         {
+            e.preventDefault();
+
             var link = $(this),
                 httpMethod = link.data('method').toUpperCase(),
                 confirmMessage = link.data('confirm'),
@@ -30,17 +32,22 @@ jQuery(function () {
             // Allow user to optionally provide data-confirm="Are you sure?"
             if (confirmMessage)
             {
-                if ( ! confirm(confirmMessage))
-                {
-                    link.blur();
-                    return false;
-                }
+                swal({
+                  title: "Crap !",
+                  text: confirmMessage,
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#DD6B55"
+                }, function(isConfirm){
+                  if(isConfirm) {
+                    form = larail.createForm(link);
+                    form.submit();
+                  }
+                });
+            } else {
+               form = larail.createForm(link);
+               form.submit();
             }
-
-            e.preventDefault();
-
-            form = larail.createForm(link);
-            form.submit();
         },
 
         createForm: function(link)

@@ -18,6 +18,21 @@ get('/', [
 
 resource('pins', 'PinsController');
 
+get('users/{id}/favorites', [
+	'as'    => 'favorites_path',
+	'uses' => 'PinsController@favorites'
+]);
+
+put('favorites/{id}', [
+	'as'    => 'favorite_path',
+	'uses' => 'PinsController@favorite'
+]);
+
+delete('favorites/{id}', [
+	'as'    => 'favorite_path',
+	'uses' => 'PinsController@unfavorite'
+]);
+
 // Authentication routes...
 get('auth/login', 'Auth\AuthController@getLogin');
 post('auth/login', 'Auth\AuthController@postLogin');
@@ -26,6 +41,19 @@ get('auth/logout', 'Auth\AuthController@getLogout');
 // Registration routes...
 get('auth/register', 'Auth\AuthController@getRegister');
 post('auth/register', 'Auth\AuthController@postRegister');
+
+// Account edit routes...
+get('auth/user/edit', [
+	'middleware' => 'auth',
+	'as'    => 'user_edit_path',
+	'uses'	=> 'Auth\AuthController@getEdit'
+]);
+
+patch('auth/user/edit', [
+	'middleware' => 'auth',
+	'as'    => 'user_path',
+	'uses'	=> 'Auth\AuthController@patchEdit'
+]);
 
 // Password reset link request routes...
 get('password/email', 'Auth\PasswordController@getEmail');

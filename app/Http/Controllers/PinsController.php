@@ -7,15 +7,18 @@ use App\Http\Requests\CreatePinRequest;
 use App\Http\Requests\UpdatePinRequest;
 use App\Jobs\SaveImageFile;
 use App\Pin;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class PinsController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('auth', ['only' => 'create']);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('owner', ['only' => ['edit', 'update', 'destroy']]);
     }
 
     /**
@@ -25,7 +28,7 @@ class PinsController extends Controller
      */
     public function index()
     {
-        $pins = Pin::latest()->get();
+        $pins = Pin::with('owner')->latest()->simplePaginate(10);
 
         return view('pins.index', compact('pins'));
     }
@@ -55,7 +58,7 @@ class PinsController extends Controller
 
         Auth::user()->pins()->save($pin);
 
-        flash()->success('Successfully created new pin.');
+        flash('Successfully created new pin.');
 
         return redirect()->route('pins.show', $pin->id);
     }
@@ -92,13 +95,16 @@ class PinsController extends Controller
     {
         $data = $request->all();
 
-        $data['image'] = $this->saveImage($request->image);
+        if(isset($data['image'])){
+          $data['image'] = $this->saveImage($request->image);
 
-        $this->deleteCurrentImagesForThis($pin);
+          $this->deleteCurrentImagesForThis($pin);
+        }
+
 
         $pin->update($data);
 
-        flash()->success('Your pin was updated successfully.');
+        flash('Your pin was updated successfully.');
 
         return redirect()->route('pins.show', $pin->id);
     }
@@ -115,18 +121,63 @@ class PinsController extends Controller
 
         $this->deleteCurrentImagesForThis($pin);
 
-        flash()->success('Your pin was deleted successfully.');
+        flash('Your pin was deleted successfully.');
 
         return redirect()->route('root_path');
     }
 
-    private function saveImage($image){
+    /**
+     * Upvote a pin.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function favorite($id)
+    {
+        Auth::user()->favorites()->attach($id);
+
+        flash('This pin has been marked as favorited.');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Downvote a pin.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function unfavorite($id)
+    {
+        Auth::user()->favorites()->detach($id);
+
+        flash('This pin has been removed from your favorites.');
+
+        return redirect()->back();
+    }
+
+    /**
+     * List all user's voted pins.
+     *
+     * @param  int $userId
+     * @return Response
+     */
+    public function favorites($userId)
+    {
+        $pins = User::findOrFail($userId)->favorites()->simplePaginate(10);
+
+        return view('pins.index', compact('pins'));
+    }
+
+    private function saveImage($image)
+    {
         return $this->dispatch(
             new SaveImageFile($image)
         );
     }
 
-    private function deleteCurrentImagesForThis(Pin $pin){
+    private function deleteCurrentImagesForThis(Pin $pin)
+    {
         File::delete(public_path() . config('uploads_paths.pins.original') . $pin->image);
         File::delete(public_path() . config('uploads_paths.pins.medium') . $pin->image);
     }

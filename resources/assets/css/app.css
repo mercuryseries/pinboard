@@ -5805,7 +5805,7 @@ button.close {
     #pins .box a.darken img {
       max-width: 100%;
       height: auto;
-      transition: all 0.5s linear; }
+      transition: all 0.2s linear; }
     #pins .box h2 {
       font-size: 22px;
       margin: 0;
@@ -5845,6 +5845,18 @@ button.close {
 
 .help-block.error {
   color: #b84442; }
+
+.has-error .help-block.stayunchanged {
+  color: #737373; }
+
+.not-favorited span, .favorited:hover span {
+  color: black; }
+
+.not-favorited:hover span, .favorited span {
+  color: #bd1e23; }
+
+.sweet-alert {
+  font-family: 'Raleway', sans-serif; }
 
 body {
   font-family: 'Raleway', sans-serif;

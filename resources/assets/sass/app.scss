@@ -5,6 +5,22 @@
 	color: #b84442;
 }
 
+.has-error .help-block.stayunchanged{
+	color: #737373;
+}
+
+.not-favorited span, .favorited:hover span{
+	color: black;
+}
+
+.not-favorited:hover span, .favorited span{
+	color: #bd1e23;
+}
+
+.sweet-alert{
+	font-family: 'Raleway', sans-serif;
+}
+
 body {
 	font-family: 'Raleway', sans-serif;
 	background: #E9E9E9;

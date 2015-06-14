@@ -21,8 +21,12 @@
 						<div class="col-md-6">
 							<div class="btn-group pull-right">
 								@if(Auth::check())
-									{!! link_to_route('pins.edit', 'Edit', $pin->id) !!}
-									{!! link_to_route('pins.destroy', 'Delete', $pin->id, ['data-method' => 'DELETE', 'data-confirm' => 'Are you sure that you want to delete this?']) !!}
+									@include('shared/_favorite_link')
+
+									@if(Auth::id() == $pin->owner->id)
+										{!! link_to_route('pins.edit', 'Edit', $pin->id, ['class' => 'btn btn-default']) !!}
+										{!! link_to_route('pins.destroy', 'Delete', $pin->id, ['class' => 'btn btn-default', 'data-method' => 'DELETE', 'data-confirm' => 'Are you sure that you want to delete this?']) !!}
+									@endif
 								@endif
 							</div>
 						</div>

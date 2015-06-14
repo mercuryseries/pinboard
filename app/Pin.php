@@ -25,4 +25,13 @@ class Pin extends Model
     	return config('uploads_paths.pins.medium') . $this->image;
     }
 
+    /**
+     * A pin can have many favorites
+     *
+     */
+    public function favorites()
+    {
+        return $this->belongsToMany('App\Pin', 'favorites')->withTimestamps();
+    }
+
 }

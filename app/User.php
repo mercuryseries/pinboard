@@ -33,7 +33,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
-    public function pins(){
+    /**
+     * A user has many pins
+     *
+     * @return HasMany
+     */
+    public function pins()
+    {
         return $this->hasMany('App\Pin');
+    }
+
+    /**
+     * A user can favorite many pins
+     *
+     */
+    public function favorites()
+    {
+        return $this->belongsToMany('App\Pin', 'favorites')->withTimestamps();
     }
 }

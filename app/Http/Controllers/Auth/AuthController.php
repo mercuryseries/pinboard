@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Validator;
 
 class AuthController extends Controller
 {
@@ -31,7 +34,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest', ['except' => ['getLogout', 'getEdit', 'patchEdit']]);
     }
 
     /**
@@ -62,5 +65,27 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function getEdit(){
+        return view('auth.edit');
+    }
+
+    public function patchEdit(UpdateUserRequest $request){
+        if(Hash::check($request->current_password, $request->user()->password)){
+
+            if($request->password != ''){
+                $data = $request->all();
+                $data['password'] = bcrypt($request->password);
+                Auth::user()->update($data);
+            } else {
+                Auth::user()->update($request->except('password'));
+            }
+
+            flash('You account has been successfully updated.');
+            return redirect()->back();
+        } else {
+            return redirect()->back()->withErrors(['current_password' => 'Your current password is incorrect.']);
+        }
     }
 }

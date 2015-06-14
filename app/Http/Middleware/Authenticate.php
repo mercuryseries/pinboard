@@ -38,6 +38,7 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
+                flash('You need to sign in or sign up before continuing.');
                 return redirect()->guest('auth/login');
             }
         }

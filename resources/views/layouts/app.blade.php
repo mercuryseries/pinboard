@@ -33,7 +33,8 @@
 				<ul class="nav navbar-nav navbar-right">
 					@if(Auth::check())
 						<li>{!! link_to_route('pins.create', 'New Pin') !!}</li>
-						<li>{!! link_to('#', 'Account') !!}</li>
+						<li>{!! link_to_route('favorites_path', 'Favorites', Auth::id()) !!}</li>
+						<li>{!! link_to_route('user_edit_path', 'Account') !!}</li>
 						<li>{!! link_to('auth/logout', 'Sign Out') !!}</li>
 					@else
 						<li>{!! link_to('auth/register', 'Sign Up') !!}</li>

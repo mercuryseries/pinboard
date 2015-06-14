@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Support\Facades\Auth;
 
-class UpdatePinRequest extends Request
+class UpdateUserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +25,10 @@ class UpdatePinRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required|min:3',
-            'description' => 'required|min:10',
-            'image' => 'image'
+            'name'             => 'required|max:255',
+            'email'            => 'required|email|max:255|unique:users,'.Auth::id(),
+            'password'         => 'confirmed|min:6',
+            'current_password' => 'required'
         ];
     }
 }

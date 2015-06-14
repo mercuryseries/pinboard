@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePinsTable extends Migration
+class CreateFavoritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,19 +12,21 @@ class CreatePinsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pins', function (Blueprint $table) {
+        Schema::create('favorites', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->text('description');
-            $table->string('image');
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('pin_id')->unsigned()->index();
+            $table->timestamps();
 
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');
 
-            $table->timestamps();
+            $table->foreign('pin_id')
+                  ->references('id')
+                  ->on('pins')
+                  ->onDelete('cascade');
         });
     }
 
@@ -35,6 +37,6 @@ class CreatePinsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pins');
+        Schema::drop('favorites');
     }
 }
