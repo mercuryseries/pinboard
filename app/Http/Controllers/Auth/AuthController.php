@@ -72,9 +72,9 @@ class AuthController extends Controller
     }
 
     public function patchEdit(UpdateUserRequest $request){
-        if(theCurrentPasswordProvidedIsValid($request)){
+        if($this->theCurrentPasswordProvidedIsValid($request)){
 
-            updateUserInfos($request);
+            $this->updateUserInfos($request);
             flash('You account has been successfully updated.');
             return redirect()->back();
 
@@ -88,7 +88,7 @@ class AuthController extends Controller
     }
 
     private function updateUserInfos($request){
-        if(userWantsToUpdateTheirPassword($request->password)){
+        if($this->userWantsToUpdateTheirPassword($request->password)){
             $data = $request->all();
             $data['password'] = bcrypt($request->password);
             Auth::user()->update($data);

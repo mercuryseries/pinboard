@@ -31,7 +31,7 @@ class Pin extends Model
      */
     public function favorites()
     {
-        return $this->belongsToMany('App\Pin', 'favorites')->withTimestamps();
+        return $this->belongsToMany('App\User', 'favorites')->withTimestamps();
     }
 
 }

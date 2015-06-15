@@ -32,8 +32,8 @@ class SaveImageFile extends Job implements SelfHandling
 
         $fileName = $this->generateRandomFileName();
 
-        $this->checksIfUploadDirectoryExistsOrCreate(config('uploads_paths.pins.original'));
-        $this->checksIfUploadDirectoryExistsOrCreate(config('uploads_paths.pins.medium'));
+        $this->checksIfDirectoryExistsOrCreate(config('uploads_paths.pins.original'));
+        $this->checksIfDirectoryExistsOrCreate(config('uploads_paths.pins.medium'));
 
         $this->saveOriginalImage($image, $fileName);
 
@@ -46,7 +46,7 @@ class SaveImageFile extends Job implements SelfHandling
         return str_random(20) . '.' . $this->file->getClientOriginalExtension();
     }
 
-    private function checksIfUploadDirectoryExistsOrCreate($path){
+    private function checksIfDirectoryExistsOrCreate($path){
         return File::exists($path) or File::makeDirectory($path, 0755, true);
     }
 
