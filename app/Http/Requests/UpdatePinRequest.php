@@ -26,7 +26,7 @@ class UpdatePinRequest extends Request
         return [
             'title' => 'required|min:3',
             'description' => 'required|min:10',
-            'image' => 'image'
+            'image' => 'image|size:4000'
         ];
     }
 }

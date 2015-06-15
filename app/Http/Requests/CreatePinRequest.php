@@ -26,7 +26,7 @@ class CreatePinRequest extends Request
         return [
             'title' => 'required|min:3|unique:pins',
             'description' => 'required|min:10',
-            'image' => 'required|image'
+            'image' => 'required|image|size:4000'
         ];
     }
 }
