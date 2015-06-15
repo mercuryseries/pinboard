@@ -32,8 +32,8 @@ class SaveImageFile extends Job implements SelfHandling
 
         $fileName = $this->generateRandomFileName();
 
-        //$this->checksIfDirectoryExistsOrCreate(config('uploads_paths.pins.original'));
-        //$this->checksIfDirectoryExistsOrCreate(config('uploads_paths.pins.medium'));
+        $this->checksIfDirectoryExistsOrCreate(config('uploads_paths.pins.original'));
+        $this->checksIfDirectoryExistsOrCreate(config('uploads_paths.pins.medium'));
 
         $this->saveOriginalImage($image, $fileName);
 
