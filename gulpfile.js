@@ -47,4 +47,6 @@ elixir(function(mix) {
 			'app.js'
 		]);
 
+		mix.version(["css/all.css", "js/all.js"]);
+
 });

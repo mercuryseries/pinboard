@@ -8,7 +8,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,700">
-	<link href="{{ asset('/css/all.css') }}" rel="stylesheet">
+	<link href="{{ elixir('css/all.css') }}" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,6 +26,6 @@
 		@yield('content')
 	</div>
 
-	<script src="{{ asset('/js/all.js') }}"></script>
+	<script src="{{ elixir('js/all.js') }}"></script>
 </body>
 </html>
