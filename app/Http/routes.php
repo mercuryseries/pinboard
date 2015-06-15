@@ -11,11 +11,13 @@
 |
 */
 
+// Static Pages routes...
 get('/', [
 	'as'   => 'root_path',
 	'uses' => 'PinsController@index'
 ]);
 
+// Pins routes...
 resource('pins', 'PinsController');
 
 get('users/{id}/favorites', [

@@ -101,7 +101,6 @@ class PinsController extends Controller
           $this->deleteCurrentImagesForThis($pin);
         }
 
-
         $pin->update($data);
 
         flash('Your pin was updated successfully.');

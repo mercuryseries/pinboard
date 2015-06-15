@@ -72,20 +72,32 @@ class AuthController extends Controller
     }
 
     public function patchEdit(UpdateUserRequest $request){
-        if(Hash::check($request->current_password, $request->user()->password)){
+        if(theCurrentPasswordProvidedIsValid($request)){
 
-            if($request->password != ''){
-                $data = $request->all();
-                $data['password'] = bcrypt($request->password);
-                Auth::user()->update($data);
-            } else {
-                Auth::user()->update($request->except('password'));
-            }
-
+            updateUserInfos($request);
             flash('You account has been successfully updated.');
             return redirect()->back();
+
         } else {
             return redirect()->back()->withErrors(['current_password' => 'Your current password is incorrect.']);
         }
+    }
+
+    private function theCurrentPasswordProvidedIsValid($request){
+        return Hash::check($request->current_password, $request->user()->password);
+    }
+
+    private function updateUserInfos($request){
+        if(userWantsToUpdateTheirPassword($request->password)){
+            $data = $request->all();
+            $data['password'] = bcrypt($request->password);
+            Auth::user()->update($data);
+        } else {
+            Auth::user()->update($request->except('password'));
+        }
+    }
+
+    private function userWantsToUpdateTheirPassword($password){
+        return $password != '';
     }
 }
