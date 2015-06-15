@@ -32,8 +32,8 @@ class SaveImageFile extends Job implements SelfHandling
 
         $fileName = $this->generateRandomFileName();
 
-        $this->checksIfDirectoryExistsOrCreate(config('uploads_paths.pins.original'));
-        $this->checksIfDirectoryExistsOrCreate(config('uploads_paths.pins.medium'));
+        //$this->checksIfDirectoryExistsOrCreate(config('uploads_paths.pins.original'));
+        //$this->checksIfDirectoryExistsOrCreate(config('uploads_paths.pins.medium'));
 
         $this->saveOriginalImage($image, $fileName);
 
@@ -51,13 +51,13 @@ class SaveImageFile extends Job implements SelfHandling
     }
 
     private function saveOriginalImage($image, $fileName){
-        $image->save(public_path() . config('uploads_paths.pins.original') . $fileName);
+        $image->save(config('uploads_paths.pins.original') . $fileName);
     }
 
     private function saveMediumImage($image, $fileName){
         $image->resize(300, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })
-              ->save(public_path(). config('uploads_paths.pins.medium') . $fileName);
+              ->save(config('uploads_paths.pins.medium') . $fileName);
     }
 }
