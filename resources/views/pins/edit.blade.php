@@ -10,7 +10,7 @@
 				<div class="panel-body">
 					<div class="current_image">
 						<strong class="center">Current Image</strong>
-						<img src="{{ $pin->mediumImage() }}" alt="">
+						<img src="{{ GlideImage::load('pins/'.$pin->image, ['w'=> 300]) }}" />
 					</div>
 					{!! Form::model($pin, ['route' => ['pins.update', $pin->id], 'files' => true, 'method' => 'PATCH']) !!}
 

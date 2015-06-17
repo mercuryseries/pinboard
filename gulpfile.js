@@ -23,7 +23,7 @@ elixir(function(mix) {
         )
     	 .copy(paths.bower_base_path + '/sweetalert/dist/sweetalert.min.js', 'resources/assets/js/vendor/sweetalert.min.js'
         )
-			 .copy(paths.bootstrap + 'fonts/bootstrap', 'public/fonts/bootstrap')
+			 .copy(paths.bootstrap + 'fonts/bootstrap', 'public/build/fonts/bootstrap')
 			 .copy(paths.bootstrap + 'javascripts/bootstrap.js', 'resources/assets/js/vendor/bootstrap.js')
 			 .copy(paths.bower_base_path + 'jquery/dist/jquery.min.js', 'resources/assets/js/vendor/jquery.min.js')
 			 .copy(paths.bower_base_path + 'jquery-masonry/dist/masonry.pkgd.js', 'resources/assets/js/vendor/jquery.masonry.js')

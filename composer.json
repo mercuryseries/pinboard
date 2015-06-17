@@ -12,7 +12,7 @@
         "laravelcollective/html": "~5.0",
         "doctrine/dbal": "^2.6@dev",
         "barryvdh/laravel-debugbar": "^2.0@dev",
-        "intervention/image": "dev-master"
+        "spatie/laravel-glide": "2.2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

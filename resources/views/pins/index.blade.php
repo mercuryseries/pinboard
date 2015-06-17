@@ -5,7 +5,7 @@
 		@forelse($pins as $pin)
 			<div class="box panel panel-default">
 				<a href="{{ route('pins.show', $pin->id) }}" class="darken">
-					<img src="{{ $pin->originalImage() }}" alt="">
+					<img src="{{ GlideImage::load('pins/'.$pin->image) }}" />
 				</a>
 				<h2>
 					{!! link_to_route('pins.show', $pin->title, $pin->id) !!}
