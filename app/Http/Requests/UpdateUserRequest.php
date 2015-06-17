@@ -26,7 +26,7 @@ class UpdateUserRequest extends Request
     {
         return [
             'name'             => 'required|max:255',
-            'email'            => 'required|email|max:255|exists:users,email',
+            'email'            => 'required|email|max:255|unique:users,users.email,'.Auth::id(),
             'password'         => 'confirmed|min:6',
             'current_password' => 'required'
         ];
