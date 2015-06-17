@@ -5,7 +5,7 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading pin_image">
-					<img src="{{ GlideImage::load('pins/'.$pin->image) }}" />
+					<img src="{{ $pin->getImage() }}" />
 				</div>
 				<div class="panel-body">
 					<h1>{{ $pin->title }}</h1>

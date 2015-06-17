@@ -31,7 +31,7 @@ class SaveImageFile extends Job implements SelfHandling
     {
         $fileName = $this->generateRandomFileName();
 
-        $this->saveOriginalImage($fileName);
+        $this->saveImage($fileName);
 
         return $fileName;
     }
@@ -40,7 +40,7 @@ class SaveImageFile extends Job implements SelfHandling
         return str_random(20) . '.' . $this->file->getClientOriginalExtension();
     }
 
-    private function saveOriginalImage($fileName){
+    private function saveImage($fileName){
         Storage::put(
             config('upload_paths.pins') . $fileName,
             file_get_contents($this->file->getRealPath())

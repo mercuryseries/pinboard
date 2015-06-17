@@ -26,4 +26,12 @@ class Pin extends Model
         return $this->belongsToMany('App\User', 'favorites')->withTimestamps();
     }
 
+    public function getImage($width = null){
+        if(!is_null($width)){
+            $width = "?w=" . $width;
+        }
+
+        return config('upload_paths.pins') . $this->image . $width;
+    }
+
 }

@@ -11,6 +11,12 @@
 |
 */
 
+// Glide Image Processing routes...
+get('images/{path}', function(League\Glide\Server $server, Illuminate\Http\Request $request){
+	$server->outputImage($request);
+})->where('path', '.*');
+
+
 // Static Pages routes...
 get('/', [
 	'as'   => 'root_path',

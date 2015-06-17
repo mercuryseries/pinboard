@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c0e10f4ab3a5c18bc1001a2d4f8f3c46",
+    "hash": "3f1629ec2b8b637f9ff766e3606684f8",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2018,49 +2018,6 @@
                 "shell"
             ],
             "time": "2015-03-26 18:43:54"
-        },
-        {
-            "name": "spatie/laravel-glide",
-            "version": "2.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-glide.git",
-                "reference": "4c37f0b4bd2b6a345175f045ff9398ccc99fff94"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-glide/zipball/4c37f0b4bd2b6a345175f045ff9398ccc99fff94",
-                "reference": "4c37f0b4bd2b6a345175f045ff9398ccc99fff94",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "5.*",
-                "league/glide": "0.3.*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "codeception/codeception": "2.*",
-                "mockery/mockery": "~0.9.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Spatie\\Glide": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be"
-                }
-            ],
-            "description": "A Glide Service Provider for Laravel",
-            "homepage": "https://github.com/spatie/laravel-glide",
-            "time": "2015-06-15 16:16:23"
         },
         {
             "name": "swiftmailer/swiftmailer",

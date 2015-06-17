@@ -146,7 +146,6 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        Spatie\Glide\GlideServiceProvider::class,
 
     ],
 
@@ -198,7 +197,6 @@ return [
         'Flash'     => Laracasts\Flash\Flash::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
-        'GlideImage' => Spatie\Glide\GlideImageFacade::class
 
     ],
 
