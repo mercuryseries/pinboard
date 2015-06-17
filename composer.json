@@ -12,7 +12,8 @@
         "laravelcollective/html": "~5.0",
         "doctrine/dbal": "^2.6@dev",
         "barryvdh/laravel-debugbar": "^2.0@dev",
-        "spatie/laravel-glide": "2.2.*"
+        "spatie/laravel-glide": "2.2.*",
+        "league/flysystem-aws-s3-v3": "~1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -24,7 +24,7 @@ class CreatePinRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required|min:3|unique:pins',
+            'title' => 'required|min:3',
             'description' => 'required|min:10',
             'image' => 'required|image|max:4000'
         ];

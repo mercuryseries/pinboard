@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class PinsController extends Controller
 {
@@ -177,7 +178,6 @@ class PinsController extends Controller
 
     private function deleteCurrentImagesForThis(Pin $pin)
     {
-        File::delete(public_path() . config('uploads_paths.pins.original') . $pin->image);
-        File::delete(public_path() . config('uploads_paths.pins.medium') . $pin->image);
+        Storage::delete(config('upload_paths.pins') . $pin->image);
     }
 }

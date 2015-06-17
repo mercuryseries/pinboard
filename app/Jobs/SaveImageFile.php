@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class SaveImageFile extends Job implements SelfHandling
@@ -30,11 +31,7 @@ class SaveImageFile extends Job implements SelfHandling
     {
         $fileName = $this->generateRandomFileName();
 
-        $destination = config('laravel-glide.source.path'). '/pins';
-
-        $this->checksIfDirectoryExistsOrCreate($destination);
-
-        $this->saveOriginalImage($destination, $fileName);
+        $this->saveOriginalImage($fileName);
 
         return $fileName;
     }
@@ -43,11 +40,10 @@ class SaveImageFile extends Job implements SelfHandling
         return str_random(20) . '.' . $this->file->getClientOriginalExtension();
     }
 
-    private function checksIfDirectoryExistsOrCreate($path){
-        return File::exists($path) or File::makeDirectory($path, 0755, true);
-    }
-
-    private function saveOriginalImage($destination, $fileName){
-        $this->file->move($destination, $fileName);
+    private function saveOriginalImage($fileName){
+        Storage::put(
+            config('upload_paths.pins') . $fileName,
+            file_get_contents($this->file->getRealPath())
+        );
     }
 }
