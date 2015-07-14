@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreatePinRequest;
-use App\Http\Requests\UpdatePinRequest;
+use App\Http\Requests\PinRequest;
 use App\Jobs\SaveImageFile;
 use App\Pin;
 use App\User;
@@ -49,7 +48,7 @@ class PinsController extends Controller
      *
      * @return Response
      */
-    public function store(CreatePinRequest $request)
+    public function store(PinRequest $request)
     {
         $data = $request->all();
 
@@ -92,7 +91,7 @@ class PinsController extends Controller
      * @param  Pin $pin
      * @return Response
      */
-    public function update(Pin $pin, UpdatePinRequest $request)
+    public function update(Pin $pin, PinRequest $request)
     {
         $data = $request->all();
 

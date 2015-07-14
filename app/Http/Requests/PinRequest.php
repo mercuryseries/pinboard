@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class UpdatePinRequest extends Request
+class PinRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,21 @@ class UpdatePinRequest extends Request
      */
     public function rules()
     {
-        return [
+        $rules = [
             'title' => 'required|min:3',
             'description' => 'required|min:10',
-            'image' => 'image|max:4000'
+            'image' => 'required|image|max:4000'
         ];
+
+        //Image is not required for pin updating.
+        //In fact, user may choose to leave it blank in
+        //order to keep the previous uploaded image
+        if($this->method() == 'PATCH'){
+            $rules = array_merge($rules, [
+                'image' => 'image|max:4000'
+            ]);
+        }
+
+        return $rules;
     }
 }
