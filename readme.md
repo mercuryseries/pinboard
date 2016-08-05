@@ -2,7 +2,7 @@
 
 I made this simple app "Pin Board" with Laravel 5.1 (kind of pinterest clone).
 
-Demo App: http://quiet-badlands-9458.herokuapp.com/
+Demo App: https://safe-hollows-34125.herokuapp.com/
 
 Features:
 
